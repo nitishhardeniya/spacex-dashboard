@@ -27,3 +27,10 @@ $spacing_sizes : 5,10,20,30,40,50;
   }
 }
 
+.flex-container-center {
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  justify-content: center;
+}
+

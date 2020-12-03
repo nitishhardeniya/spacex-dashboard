@@ -3,20 +3,21 @@ import PropTypes from 'prop-types';
 import GridContainer from './GridContainer';
 import GridItem from './GridItem';
 
-const Grid = props => {
+const Grid = (props) => {
+  const { xs, sm, md, lg, xl, direction, justify, alignItems, container } = props;
   const breakpoints = {
-    xs: props.xs,
-    sm: props.sm,
-    md: props.md,
-    lg: props.lg,
-    xl: props.xl,
+    xs,
+    sm,
+    md,
+    lg,
+    xl,
   };
-  return props.container ? (
+  return container ? (
     <GridContainer
       breakpoints={breakpoints}
-      direction={props.direction}
-      justify={props.justify}
-      alignItems={props.alignItems}
+      direction={direction}
+      justify={justify}
+      alignItems={alignItems}
       {...props}
     />
   ) : (
@@ -41,4 +42,5 @@ Grid.propTypes = {
 
 Grid.defaultProps = {
   xs: 24,
+  direction: "row"
 };
