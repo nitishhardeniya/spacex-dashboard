@@ -1,0 +1,173 @@
+// Grid
+$bp-sm: 600;
+$bp-md: 960;
+$bp-lg: 1280;
+$bp-xl: 1920;
+$no-of-columns: 24; // Can be changed to 12 for 12 col grid
+
+$map-grid-props: (
+        '-xs': 0,
+        '-sm': $bp-sm,
+        '-md': $bp-md,
+        '-lg': $bp-lg,
+        '-xl': $bp-xl
+);
+
+@mixin create-mq($breakpoint, $min-or-max) {
+  @if($breakpoint == 0) {
+    @content;
+  } @else {
+    @media screen and (#{$min-or-max}-width: $breakpoint *1px) {
+      @content;
+    }
+  }
+}
+
+@mixin create-col-classes($modifier, $no-of-columns, $breakpoint) {
+  @include create-mq($breakpoint, 'min') {
+    .HPGrid-col#{$modifier}-offset-0 {
+      margin-left: 0;
+    }
+    @for $i from 1 through $no-of-columns {
+      .HPGrid-col#{$modifier}-#{$i} {
+        box-sizing: border-box;
+        flex-basis: (100 / ($no-of-columns / $i) ) * 1%;
+        max-width: (100 / ($no-of-columns / $i) ) * 1%;
+      }
+      .HPGrid-col#{$modifier}-offset-#{$i} {
+        margin-left: (100 / ($no-of-columns / $i) ) * 1%;
+      }
+    }
+  }
+}
+
+@each $modifier , $breakpoint in $map-grid-props {
+  @if($modifier == '') {
+    $modifier: '-xs';
+  }
+  @include create-mq($breakpoint - 1, 'max') {
+    .HPGrid-hidden#{$modifier}-down {
+      display: none !important;
+    }
+  }
+  @include create-mq($breakpoint, 'min') {
+    .HPGrid-hidden#{$modifier}-up {
+      display: none !important;
+    }
+  }
+}
+
+.HPGrid {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.HPGrid-container {
+  //max-width: $bp-md * 1px;
+  margin: 0 auto;
+
+  &-fluid {
+    margin: 0;
+    max-width: 100%;
+  }
+
+  &-row {
+    flex-direction: row;
+  }
+
+  &-column {
+    flex-direction: column;
+  }
+
+  &-row-reverse {
+    flex-direction: row-reverse;
+  }
+
+  &-column-reverse {
+    flex-direction: column-reverse;
+  }
+
+  // flex justify
+  &-flex-start {
+    justify-content: flex-start;
+  }
+
+  &-flex-end {
+    justify-content: flex-end;
+  }
+
+  &-center {
+    justify-content: center;
+  }
+
+  &-space-around {
+    justify-content: space-around;
+  }
+
+  &-space-between {
+    justify-content: space-between;
+  }
+
+  &-space-evenly {
+    justify-content: space-evenly;
+  }
+
+  // flex align
+  &-align-center {
+    align-items: center;
+  }
+
+  &-align-flex-start {
+    align-items: flex-start;
+  }
+
+  &-align-flex-end {
+    align-items: flex-end;
+  }
+
+  &-align-baseline {
+    align-items: baseline;
+  }
+
+  &-align-flex-start {
+      align-items: flex-start;
+  }
+
+  &-align-flex-end {
+    align-items: flex-end;
+  }
+
+  // flex justify
+  &-column {
+    flex-direction: column;
+  }
+
+  &-space-around {
+      justify-content: space-around;
+  }
+
+  &-space-between {
+    justify-content: space-between;
+  }
+
+  &-space-evenly {
+    justify-content: space-evenly;
+  }
+
+  &-flex-start {
+    justify-content: flex-start;
+  }
+
+  &-flex-end {
+    justify-content: flex-end;
+  }
+
+  &-center {
+    justify-content: center;
+  }
+}
+
+@each $modifier , $breakpoint in $map-grid-props {
+    @include create-col-classes($modifier, $no-of-columns, $breakpoint);
+}
