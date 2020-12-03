@@ -1,9 +1,9 @@
 import Head from 'next/head';
 import fetch from 'isomorphic-unfetch';
 import PropTypes from 'prop-types';
-import styles from '../styles/Home.module.css';
 import Grid from './Grid';
 import LaunchCard from './launchcard';
+import Filters from './filters';
 
 const Home = (props) => {
   // console.log(props.results)
@@ -20,9 +20,10 @@ const Home = (props) => {
       </h1>
 
       <Grid container direction="row">
-        <Grid item xs={24} sm={24} md={4} lg={4} xl={4} className="filters">
+        <Grid item xs={24} sm={24} md={4} lg={4} xl={4} className="filters padding-10">
+          <Filters />
         </Grid>
-        <Grid item xs={24} sm={24} md={20} lg={20} xl={20} className="programs">
+        <Grid item xs={24} sm={24} md={20} lg={20} xl={20} className="launches">
           <Grid container justify="center" alignItems="center">
             {results.map(item => <LaunchCard data={item} />)}
           </Grid>
