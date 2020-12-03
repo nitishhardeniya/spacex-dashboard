@@ -38,7 +38,7 @@ class Home extends React.Component {
 
   async _filterByLaunchYear(year) {
     // console.log(year)
-    const res = await fetch(`${LAUNCHES}&launch_year=${year}`);
+    const res = await fetch(year === "All" ? LAUNCHES :`${LAUNCHES}&launch_year=${year}`);
     const launchYearFilteredData = await res.json();                
     // console.log(launchFilteredData);
     this.setState({
