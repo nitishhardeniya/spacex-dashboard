@@ -13,6 +13,7 @@ class Home extends React.Component {
     this.state = {
       results: props.results
     }
+    this._filterByLaunchYear = this._filterByLaunchYear.bind(this);
     this._filterByLanding = this._filterByLanding.bind(this);
     this._filterByLaunch = this._filterByLaunch.bind(this);
   }
@@ -35,6 +36,16 @@ class Home extends React.Component {
     })
   }
 
+  async _filterByLaunchYear(year) {
+    // console.log(year)
+    const res = await fetch(`${LAUNCHES}&launch_year=${year}`);
+    const launchYearFilteredData = await res.json();                
+    // console.log(launchFilteredData);
+    this.setState({
+      results: launchYearFilteredData
+    })
+  }
+
   render() {
     const { results } = this.state;
     return (
@@ -50,11 +61,11 @@ class Home extends React.Component {
 
         <Grid container direction="row">
           <Grid item xs={24} sm={24} md={4} lg={4} xl={4} className="filters padding-10">
-            <Filters filterByLaunch={this._filterByLaunch} filterByLanding={this._filterByLanding} />
+            <Filters filterByLaunchYear={this._filterByLaunchYear} filterByLaunch={this._filterByLaunch} filterByLanding={this._filterByLanding} />
           </Grid>
           <Grid item xs={24} sm={24} md={20} lg={20} xl={20} className="launches">
             <Grid container justify="center" alignItems="center">
-              {results && results.map(item => <LaunchCard data={item} />)}
+              {results && results.length > 0 ? results.map(item => <LaunchCard data={item} />) : <div className="no-data">No launches found</div>}
             </Grid>
           </Grid>
         </Grid>
