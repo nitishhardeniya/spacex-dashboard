@@ -1,9 +1,9 @@
 import Head from 'next/head';
 import fetch from 'isomorphic-unfetch';
 import PropTypes from 'prop-types';
-import Grid from './Grid';
-import LaunchCard from './launchcard';
-import Filters from './filters';
+import Grid from '../components/Grid';
+import LaunchCard from '../components/launchcard';
+import Filters from '../components/filters';
 
 const Home = (props) => {
   // console.log(props.results)
