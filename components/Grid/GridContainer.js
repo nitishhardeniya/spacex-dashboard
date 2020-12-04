@@ -2,10 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-const GridContainer = props => {
-  const gridClasses =
-    props.item &&
-    Object.keys(props.breakpoints).reduce((acc, currentVal) => {
+const GridContainer = (props) => {
+  const gridClasses = props.item
+    && Object.keys(props.breakpoints).reduce((acc, currentVal) => {
       if (!props.breakpoints[currentVal]) {
         return acc;
       }

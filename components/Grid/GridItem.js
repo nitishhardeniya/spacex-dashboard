@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-const GridItem = props => {
+const GridItem = (props) => {
   const gridClasses = Object.keys(props.breakpoints).reduce(
     (acc, currentVal) => {
       if (!props.breakpoints[currentVal]) {

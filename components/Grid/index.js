@@ -4,7 +4,9 @@ import GridContainer from './GridContainer';
 import GridItem from './GridItem';
 
 const Grid = (props) => {
-  const { xs, sm, md, lg, xl, direction, justify, alignItems, container } = props;
+  const {
+    xs, sm, md, lg, xl, direction, justify, alignItems, container,
+  } = props;
   const breakpoints = {
     xs,
     sm,
@@ -42,5 +44,5 @@ Grid.propTypes = {
 
 Grid.defaultProps = {
   xs: 24,
-  direction: "row"
+  direction: "row",
 };
