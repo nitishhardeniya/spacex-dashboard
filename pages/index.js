@@ -14,14 +14,10 @@ class Home extends React.Component {
       results: props.results
     }
     this._filterLaunches = this._filterLaunches.bind(this);
-
-    this._filterByLaunchYear = this._filterByLaunchYear.bind(this);
-    this._filterByLanding = this._filterByLanding.bind(this);
-    this._filterByLaunch = this._filterByLaunch.bind(this);
   }
 
   async _filterLaunches(year, launched, landed) {
-    console.log(year,launched,landed);
+    // console.log(year,launched,landed);
     let URL = LAUNCHES;
     if(year !== "All") {
       URL += `&launch_year=${year}`;
@@ -40,39 +36,11 @@ class Home extends React.Component {
     }) 
   }
 
-  async _filterByLanding(val) {
-    const res = await fetch(`${LAUNCHES}&launch_success=${val}`);
-    const landFilteredData = await res.json();                
-    // console.log(landFilteredData);
-    this.setState({
-      results: landFilteredData
-    })
-  }
-
-  async _filterByLaunch(val) {
-    const res = await fetch(`${LAUNCHES}&land_success=${val}`);
-    const launchFilteredData = await res.json();                
-    // console.log(launchFilteredData);
-    this.setState({
-      results: launchFilteredData
-    })
-  }
-
-  async _filterByLaunchYear(year) {
-    // console.log(year)
-    const res = await fetch(year === "All" ? LAUNCHES :`${LAUNCHES}&launch_year=${year}`);
-    const launchYearFilteredData = await res.json();                
-    // console.log(launchFilteredData);
-    this.setState({
-      results: launchYearFilteredData
-    })
-  }
-
   render() {
     const { results } = this.state;
     return (
       <Grid container className="main-container" justify="center">
-       <Grid item xs={24} sm={24} md={18} lg={18} xl={18}>
+       <Grid item xs={24} sm={24} md={24} lg={18} xl={18}>
         <Head>
             <title>SpaceX</title>
             <link rel="icon" href="/favicon.ico" />
@@ -84,7 +52,7 @@ class Home extends React.Component {
 
           <Grid container direction="row" className="padding-t-10">
             <Grid item xs={24} sm={24} md={4} lg={4} xl={4} className="filters padding-10">
-              <Filters filterLaunches={this._filterLaunches} filterByLaunchYear={this._filterByLaunchYear} filterByLaunch={this._filterByLaunch} filterByLanding={this._filterByLanding} />
+              <Filters filterLaunches={this._filterLaunches} />
             </Grid>
             <Grid item xs={24} sm={24} md={20} lg={20} xl={20} className="launches">
               <Grid container>

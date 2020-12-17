@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Grid from './Grid';
 import { LAUNCH_YEARS as alllaunchYears } from './../constants';
 
-const Filters = ({ filterLaunches, filterByLaunch, filterByLanding, filterByLaunchYear }) => {
+const Filters = ({ filterLaunches }) => {
   const [launchYear, setLaunchYearFilter] = useState('All');
   const [launchFilter, setLaunchFilter] = useState(null);
   const [landingFilter, setLandingFilter] = useState(null);
