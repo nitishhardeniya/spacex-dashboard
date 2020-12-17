@@ -27,13 +27,13 @@ const LaunchCard = ({ data: item }) => (
       </Grid>
 
       <Grid container justify="space-between">
-        <Grid item xs={14} className="label">Successful Launch</Grid>
-        <Grid item xs={10} className="sp-value">{item.launch_success ? "Yes" : "No"}</Grid>
+        <Grid item xs={16} className="label">Successful Launch</Grid>
+        {item.launch_success && <Grid item xs={8} className="sp-value">{item.launch_success === null ? "-" : item.launch_success.toString()}</Grid>}
       </Grid>
 
       <Grid container justify="space-between">
-        <Grid item xs={14} className="label">Successful Landing</Grid>
-        <Grid item xs={10} className="sp-value">{item.launch_success ? "Yes" : "No"}</Grid>
+        <Grid item xs={16} className="label">Successful Landing</Grid>
+        {item.land_success && <Grid item xs={8} className="sp-value">{item.land_success === null ? "-" : item.land_success.toString()}</Grid>}
       </Grid>
 
     </div>
