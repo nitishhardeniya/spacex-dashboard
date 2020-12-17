@@ -22,8 +22,22 @@ $spacing_sizes : 5,10,20,30,40,50;
     padding: #{$item}px;
   }
 
+  .padding-t-#{$item} {
+    padding-top: #{$item}px;
+  }
+
+  .padding-b-#{$item} {
+    padding-bottom: #{$item}px;
+  }
+
   .margin-#{$item} {
     margin: #{$item}px;
+  }
+  .margin-t-#{$item} {
+    margin-top: #{$item}px;
+  }
+  .margin-b-#{$item} {
+    margin-bottom: #{$item}px;
   }
 }
 

@@ -3,7 +3,7 @@ import Grid from './Grid';
 
 const LaunchCard = ({ data: item }) => (
   <Grid item xs={24} sm={24} md={6} lg={6} xl={6} key={item.mission_name}>
-    <div className="padding-20 sp-card">
+    <div className="padding-10 sp-card">
       <div className="grey-back flex-container-center padding-20">
         <img width={175} height={175} src={item.links.mission_patch_small} />
       </div>

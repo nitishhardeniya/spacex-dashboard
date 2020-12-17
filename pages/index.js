@@ -13,9 +13,31 @@ class Home extends React.Component {
     this.state = {
       results: props.results
     }
+    this._filterLaunches = this._filterLaunches.bind(this);
+
     this._filterByLaunchYear = this._filterByLaunchYear.bind(this);
     this._filterByLanding = this._filterByLanding.bind(this);
     this._filterByLaunch = this._filterByLaunch.bind(this);
+  }
+
+  async _filterLaunches(year, launched, landed) {
+    console.log(year,launched,landed);
+    let URL = LAUNCHES;
+    if(year !== "All") {
+      URL += `&launch_year=${year}`;
+    }
+    if(launched !== null) {
+      URL += `&launch_success=${launched}`;
+    }
+    if(landed !== null) {
+      URL += `&land_success=${landed}`;
+    }
+    const res = await fetch(URL);
+    const launchYearFilteredData = await res.json();                
+    // console.log(launchFilteredData);
+    this.setState({
+      results: launchYearFilteredData
+    }) 
   }
 
   async _filterByLanding(val) {
@@ -60,9 +82,9 @@ class Home extends React.Component {
             SpaceX Launch Programs
           </div>
 
-          <Grid container direction="row">
+          <Grid container direction="row" className="padding-t-10">
             <Grid item xs={24} sm={24} md={4} lg={4} xl={4} className="filters padding-10">
-              <Filters filterByLaunchYear={this._filterByLaunchYear} filterByLaunch={this._filterByLaunch} filterByLanding={this._filterByLanding} />
+              <Filters filterLaunches={this._filterLaunches} filterByLaunchYear={this._filterByLaunchYear} filterByLaunch={this._filterByLaunch} filterByLanding={this._filterByLanding} />
             </Grid>
             <Grid item xs={24} sm={24} md={20} lg={20} xl={20} className="launches">
               <Grid container>
