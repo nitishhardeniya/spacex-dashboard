@@ -49,27 +49,29 @@ class Home extends React.Component {
   render() {
     const { results } = this.state;
     return (
-      <div className="main-container">
+      <Grid container className="main-container" justify="center">
+       <Grid item xs={24} sm={24} md={18} lg={18} xl={18}>
         <Head>
-          <title>SpaceX</title>
-          <link rel="icon" href="/favicon.ico" />
-        </Head>
+            <title>SpaceX</title>
+            <link rel="icon" href="/favicon.ico" />
+          </Head>
 
-        <div className="sp-header-title padding-20">
-          SpaceX Launch Programs
-        </div>
+          <div className="sp-header-title padding-20">
+            SpaceX Launch Programs
+          </div>
 
-        <Grid container direction="row">
-          <Grid item xs={24} sm={24} md={4} lg={4} xl={4} className="filters padding-10">
-            <Filters filterByLaunchYear={this._filterByLaunchYear} filterByLaunch={this._filterByLaunch} filterByLanding={this._filterByLanding} />
-          </Grid>
-          <Grid item xs={24} sm={24} md={20} lg={20} xl={20} className="launches">
-            <Grid container justify="center" alignItems="center">
-              {results && results.length > 0 ? results.map(item => <LaunchCard data={item} />) : <div className="no-data">No launches found</div>}
+          <Grid container direction="row">
+            <Grid item xs={24} sm={24} md={4} lg={4} xl={4} className="filters padding-10">
+              <Filters filterByLaunchYear={this._filterByLaunchYear} filterByLaunch={this._filterByLaunch} filterByLanding={this._filterByLanding} />
+            </Grid>
+            <Grid item xs={24} sm={24} md={20} lg={20} xl={20} className="launches">
+              <Grid container>
+                {results && results.length > 0 ? results.map(item => <LaunchCard data={item} />) : <div className="no-data">No launches found</div>}
+              </Grid>
             </Grid>
           </Grid>
-        </Grid>
-      </div>
+       </Grid>
+      </Grid>
     )
   }
 }
@@ -80,7 +82,7 @@ Home.getInitialProps = async () => {
   return { results: datajson}
 }
 
-Home.PropTypes = {
+Home.propTypes = {
   results: PropTypes.array,
 }
 
