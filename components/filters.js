@@ -8,25 +8,31 @@ const Filters = ({ filterLaunches }) => {
   const [landingFilter, setLandingFilter] = useState(null);
 
   const _filterByLaunch = (status) => {
-    setLaunchFilter(status);
-    // filterByLaunch(status);
-    filterLaunches(launchYear, status, landingFilter);
+    if(launchFilter === status &&  launchFilter !== null) {
+      setLaunchFilter(null);
+      filterLaunches(launchYear, null, landingFilter);
+    } else {
+      setLaunchFilter(status);
+      filterLaunches(launchYear, status, landingFilter);
+    }
   };
 
   const _filterByLanding = (status) => {
-    setLandingFilter(status);
-    // filterByLanding(status);
-    filterLaunches(launchYear, launchFilter, status);
+    if(landingFilter === status && landingFilter !== null) {
+      setLandingFilter(null);
+      filterLaunches(launchYear, launchFilter, null);
+    } else {
+      setLandingFilter(status);
+      filterLaunches(launchYear, launchFilter, status);
+    }
   };
 
   const _setLaunchYearFilter = (year) => {
     if(launchYear === year) {
       setLaunchYearFilter('All');
-      //filterByLaunchYear('All');
       filterLaunches('All', launchFilter, landingFilter);
     } else {
       setLaunchYearFilter(year);
-      //filterByLaunchYear(year);
       filterLaunches(year, launchFilter, landingFilter);
     }
   };
